@@ -1,0 +1,4 @@
+.shulCardBody:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
