@@ -26,5 +26,5 @@ set :environment, 'development'
 
 every 1.minute do
   # Tasks defined here will run once a minute
-  puts 'Hello Ry this is the every minute cronjob'
+  rake 'example:say_hello'
 end
