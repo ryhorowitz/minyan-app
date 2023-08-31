@@ -23,3 +23,8 @@ set :output, 'log/cron.log'
 
 # Sets the environment to run during development mode (Set to production by default)
 set :environment, 'development'
+
+every 1.minute do
+  # Tasks defined here will run once a minute
+  puts 'Hello Ry this is the every minute cronjob'
+end
