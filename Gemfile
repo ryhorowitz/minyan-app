@@ -17,6 +17,7 @@ gem 'puma', '~> 5.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'faker', '~> 2.18'
 gem 'pry'
+gem 'whenever', require: false
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
