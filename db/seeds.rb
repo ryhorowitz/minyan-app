@@ -47,12 +47,12 @@ Service.create!(
   date: Date.today + 1.day,
   time: Time.zone.parse('7:15')
 )
-# Service.create!(
-#   name: 'Mincha',
-#   shul_id: 1,
-#   date: Time.now + 1.day,
-#   time: Time.zone.parse('15:00')
-# )
+Service.create!(
+  name: 'Mincha',
+  shul_id: 2,
+  date: Time.now + 1.day,
+  time: Time.zone.parse('13:30')
+)
 # Service.create!(
 #   name: 'Maariv',
 #   shul_id: 1,

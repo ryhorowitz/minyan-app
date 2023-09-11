@@ -23,8 +23,11 @@ set :output, 'log/cron.log'
 
 # Sets the environment to run during development mode (Set to production by default)
 set :environment, 'development'
-
-every 1.minute do
+#  Sets time to 24hr clock e.g. 15:00 == 3:00pm
+set :chronic_options, hours24: true
+every 1.minutes do
   # Tasks defined here will run once a minute
   rake 'example:say_hello'
 end
+
+# at the time of the scheduled appointment create new appointment

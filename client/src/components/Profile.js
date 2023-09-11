@@ -63,8 +63,10 @@ function Profile() {
   const nextMinyanUserAttending = user.user_services.map(s => {
     // console.log('s is ', s)
     return <li className="list-group-item" key={s.id}>
-      <div className="text-end">{s.parsed_time} {s.service_name} {s.parsed_date}</div>
-      <div className="text-end">at {s.service_shul_name}</div>
+      <div className="text-end">{s.service_name} </div>
+      <div className="text-end">{s.parsed_date}</div>
+      <div className="text-end">{s.parsed_time} at {s.service_shul_name}</div>
+
       <button className="btn btn-primary btn-sm"
         type="button"
         id={s.id}
