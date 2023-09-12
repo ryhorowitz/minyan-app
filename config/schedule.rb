@@ -34,3 +34,5 @@ end
 every 1.day, at: '7:15am' do
   rake 'service:create_bnai_shacharit_service'
 end
+
+# emails shuls contact_email daily at 6am with number of people who rsvp'd
