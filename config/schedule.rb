@@ -31,3 +31,6 @@ every 1.minutes do
 end
 
 # at the time of the scheduled appointment create new appointment
+every 1.day, at: '7:15am' do
+  rake 'service:create_bnai_shacharit_service'
+end
