@@ -19,7 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 # Creates a output log for you to view previously run cron jobs
-set :output, 'log/cron.log'
+set :output, { error: 'log/cron_error_log.log', standard: 'log/cron_log.log' }
 
 # Sets the environment to run during development mode (Set to production by default)
 set :environment, 'development'
@@ -30,14 +30,12 @@ every 1.minutes do
   rake 'example:say_hello'
 end
 
+# emails shuls contact_email daily at 6am with number of people who rsvp'd
+every 1.minutes do
+  runner 'AttendenceMailer.daily_rsvps("Bnai Abraham","Shacharit").deliver_later'
+end
+
 # at the time of the scheduled appointment create new appointment
 every 1.day, at: '7:15am' do
   rake 'service:create_bnai_shacharit_service'
 end
-
-# emails shuls contact_email daily at 6am with number of people who rsvp'd
-every 1.minute do
-  rake 'AttendenceMailer:daily_rsvps'
-end
-
-# 'Bnai Abraham','Shacharit'
