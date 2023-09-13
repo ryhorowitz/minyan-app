@@ -17,24 +17,27 @@ user_4 = User.create!(username: 'celia', email: 'celia@fakemail.com', password: 
 user_5 = User.create!(username: 'person5', email: 'person5@fakemail.com', password: '1234',
                       password_confirmation: '1234', admin: false)
 
-Shul.create!(name: "B'nai Abraham",
+Shul.create!(name: 'Bnai Abraham',
              street_address: '527 Lombard St',
              city: 'Philadelphia',
              state: 'PA',
              postal_code: '19147',
-             img: 'https://upload.wikimedia.org/wikipedia/commons/2/22/Congregation_B%27nai_Abraham_527_Lombard%2C_Philly.JPG')
+             img: 'https://upload.wikimedia.org/wikipedia/commons/2/22/Congregation_B%27nai_Abraham_527_Lombard%2C_Philly.JPG',
+             contact_email: 'ryanhorowitz@yahoo.com')
 Shul.create!(name: 'Mamash',
              street_address: '1601-03 Lombard Street',
              city: 'Philadelphia',
              state: 'PA',
              postal_code: '19146',
-             img: 'https://images.givelively.org/nonprofits/02c27ab6-551c-45c5-b0e7-1e3a84fe7b5f/social_images/chabad-young-philly_original_27a2bff528563d6312491bcae8195ffdc7d86ac0d5b4b075f9ca5859dec7c70d_social.jpg')
+             img: 'https://images.givelively.org/nonprofits/02c27ab6-551c-45c5-b0e7-1e3a84fe7b5f/social_images/chabad-young-philly_original_27a2bff528563d6312491bcae8195ffdc7d86ac0d5b4b075f9ca5859dec7c70d_social.jpg',
+             contact_email: 'ryanhorowitz@yahoo.com')
 Shul.create!(name: 'Shtiebl',
              street_address: '1321 South Juniper Street',
              city: 'Philadelphia',
              state: 'PA',
              postal_code: '19147',
-             img: 'https://www.jewishexponent.com/wp-content/uploads/2019/07/65640757_624638288035072_182707891591970816_n.jpg')
+             img: 'https://www.jewishexponent.com/wp-content/uploads/2019/07/65640757_624638288035072_182707891591970816_n.jpg',
+             contact_email: 'ryanhorowitz@yahoo.com')
 
 tomorrow = Time.now + 1.day
 tomorrow_at_715 = tomorrow.change(hour: 7, min: 15)

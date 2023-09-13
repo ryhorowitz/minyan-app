@@ -36,3 +36,8 @@ every 1.day, at: '7:15am' do
 end
 
 # emails shuls contact_email daily at 6am with number of people who rsvp'd
+every 1.minute do
+  rake 'AttendenceMailer:daily_rsvps'
+end
+
+# 'Bnai Abraham','Shacharit'
