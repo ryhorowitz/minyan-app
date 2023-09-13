@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authorized, only: :create
+  include SignupNotifier
 
   def show
     puts 'in show method from user_controller'
@@ -7,9 +8,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create!(user_params)
-    session[:user_id] = user.id
-    render json: user, status: :created
+    @user = User.create!(user_params)
+    session[:user_id] = @user.id
+    render json: @user, status: :created
   end
 
   def update
