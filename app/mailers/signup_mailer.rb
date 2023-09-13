@@ -9,7 +9,7 @@ class SignupMailer < ApplicationMailer
     @user = user
     mail(
       to: @user.email,
-      subject: "Thank you for Signing up #{user.username}"
+      subject: "Thank you for Signing up #{@user.username}"
     )
   end
 end
