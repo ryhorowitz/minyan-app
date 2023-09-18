@@ -1,6 +1,10 @@
 require 'active_support/core_ext/integer/time'
 email_username = ENV['EMAIL_USERNAME']
 email_password = ENV['EMAIL_PASSWORD']
+email_address = ENV['EMAIL_SMTP_ADDRESS']
+email_port = ENV['EMAIL_PORT']
+email_smtp_auth = ENV['EMAIL_SMTP_AUTHENTICATION']
+email_enable_starttls_auto = ENV['EMAIL_ENABLE_STARTTLS_AUTO']
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -36,12 +40,12 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: 587,
+    address: email_address,
+    port: email_port,
     user_name: email_username,
     password: email_password,
-    authentication: 'plain',
-    enable_starttls_auto: true
+    authentication: email_smtp_auth,
+    enable_starttls_auto: email_enable_starttls_auto
   }
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
