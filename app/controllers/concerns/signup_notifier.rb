@@ -1,13 +1,14 @@
 module SignupNotifier
-  extend ActiveSupport::Concern
+  # extend ActiveSupport::Concern
 
-  included do
-    after_action :notify_new_user, only: [:create]
-  end
+  # included do
+  #   after_action :notify_new_user, only: [:create]
+  # end
 
   private
 
   def notify_new_user
+    # binding.pry
     return unless @user.persisted?
 
     puts 'Sending signup email'
