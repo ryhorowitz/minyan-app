@@ -1,5 +1,6 @@
 require 'active_support/core_ext/integer/time'
-
+email_username = ENV['EMAIL_USERNAME']
+email_password = ENV['EMAIL_PASSWORD']
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -37,8 +38,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
-    user_name: 'ryan.w.horowit@gmail.com',
-    password: 'powjniwovikxqec',
+    user_name: email_username,
+    password: email_password,
     authentication: 'plain',
     enable_starttls_auto: true
   }
