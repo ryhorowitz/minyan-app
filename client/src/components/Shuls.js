@@ -10,7 +10,10 @@ function Shuls() {
   function handleShulClick(id) {
     fetch(`/shuls/${id}`)
       .then(r => r.json())
-      .then(shul => setShulDetails(shul))
+      .then(shul => {
+        console.log('shulDetails are', shul)
+        setShulDetails(shul)
+      })
       .then(() => {
         navigate(`/shuls/${id}`)
       })

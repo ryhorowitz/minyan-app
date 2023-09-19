@@ -8,9 +8,8 @@ class AttendenceMailer < ApplicationMailer
     @greeting = 'Hi'
     @shul = Shul.find_by(name: shul)
     @service = Service.find_by(name: service)
-    # puts @service.users.size
-    # puts "contact is #{@shul.contact_email}"
     @attendence = @service.users.size
     mail to: @shul.contact_email, subject: "Daily RSVPs for #{@service.name}"
+    puts 'in attendenceMailer.daily_rsvps'
   end
 end

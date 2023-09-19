@@ -5,7 +5,7 @@ namespace :create_service_instance do
     Service.create!(
       name: 'Shacharit',
       shul_id: 1,
-      date: Date.today + 2.day,
+      date: Date.today + 1.day,
       time: Time.zone.parse('7:15')
     )
   end

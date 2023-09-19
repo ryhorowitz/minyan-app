@@ -27,15 +27,11 @@ set :environment, 'development'
 # set :chronic_options, hours24: true
 
 # emails shuls contact_email daily at 6am with number of people who rsvp'd
-# every 1.minutes do
-#   runner 'AttendenceMailer.daily_rsvps("Bnai Abraham","Shacharit").deliver_later'
-# end
+every 1.day, at: '6:00 AM' do
+  rake 'daily_email:bani_shacharit_rsvps'
+end
 
 # at the time of the scheduled appointment create new appointment
 every 1.day, at: '7:15 AM' do
   rake 'create_service_instance:create_bnai_shacharit_service'
 end
-
-# every 1.day, at: '12:00 AM' do
-#   rake 'db:reset'
-# end

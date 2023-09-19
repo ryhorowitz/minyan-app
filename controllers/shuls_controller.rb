@@ -7,7 +7,8 @@ class ShulsController < ApplicationController
   end
 
   def show
-    # byebug
+    byebug
+    puts 'in Shul Show route'
     shul = Shul.find_by(id: params[:id])
     render json: shul, serializer: ShulServiceSerializer
   end
