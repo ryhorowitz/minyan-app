@@ -24,18 +24,18 @@ set :output, { error: 'log/cron_error_log.log', standard: 'log/cron_log.log' }
 # Sets the environment to run during development mode (Set to production by default)
 set :environment, 'development'
 #  Sets time to 24hr clock e.g. 15:00 == 3:00pm
-set :chronic_options, hours24: true
-every 1.minutes do
-  # Tasks defined here will run once a minute
-  rake 'example:say_hello'
-end
+# set :chronic_options, hours24: true
 
 # emails shuls contact_email daily at 6am with number of people who rsvp'd
-every 1.minutes do
-  runner 'AttendenceMailer.daily_rsvps("Bnai Abraham","Shacharit").deliver_later'
-end
+# every 1.minutes do
+#   runner 'AttendenceMailer.daily_rsvps("Bnai Abraham","Shacharit").deliver_later'
+# end
 
 # at the time of the scheduled appointment create new appointment
-every 1.day, at: '7:15am' do
-  rake 'service:create_bnai_shacharit_service'
+every 1.day, at: '7:15 AM' do
+  rake 'create_service_instance:create_bnai_shacharit_service'
 end
+
+# every 1.day, at: '12:00 AM' do
+#   rake 'db:reset'
+# end

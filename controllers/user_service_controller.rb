@@ -1,6 +1,7 @@
 class UserServiceController < ApplicationController
   def create
     user_service = UserService.create!(user_service_params)
+    # send email saying thank you for rsvping stretch goal
     render json: user_service, status: :created
   end
 
