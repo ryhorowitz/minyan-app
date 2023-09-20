@@ -1,8 +1,8 @@
 {
-  "name": "react-rails-api-project-template-client",
+  "name": "react-rails-api-project-template-client-minyan",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000",
+  "proxy": "http://localhost:3001",
   "engines": {
     "node": "16.x"
   },
