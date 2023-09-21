@@ -1,5 +1,5 @@
 class ServiceSerializer < ActiveModel::Serializer
-  attributes :id, :name, :parsed_time, :parsed_date, :shul, :users
+  attributes :id, :name, :parsed_time, :parsed_date, :users
 
   def parsed_time
     object.time.strftime('%I:%M %p')

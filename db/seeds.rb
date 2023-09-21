@@ -47,6 +47,12 @@ tomorrow_at_1930 = tomorrow.change(hour: 19, min: 30)
 Service.create!(
   name: 'Shacharit',
   shul_id: 1,
+  date: Date.today,
+  time: Time.zone.parse('7:15')
+)
+Service.create!(
+  name: 'Shacharit',
+  shul_id: 1,
   date: Date.today + 1.day,
   time: Time.zone.parse('7:15')
 )

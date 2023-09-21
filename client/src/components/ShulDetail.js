@@ -42,6 +42,9 @@ function ShulDetail() {
     }
   }
 
+  // find last service which will be the next service
+  // console.log('next service is', shul.services[shul.services.length - 1])
+  const nextService = shul.services[shul.services.length - 1]
   // const servicesList = shulDetails.next_service.map(service => {
   //   return <li className="list-group-item"
   //     key={service.id} >
@@ -51,16 +54,7 @@ function ShulDetail() {
   //     <div className="row text-end">
   //       {service.parsed_date}
   //     </div>
-  //     <div className="row text-end">
-  //       {service.users.length} people have RSVP'd
-  //       {/* I need to update state when I RSVP ????*/}
-  //     </div>
-  //     <div className="container text-end">
-  //       <button type="button"
-  //         className="btn btn-primary btn-sm"
-  //         id={`service-${service.id}`}
-  //         onClick={(e) => handleRSVP(service.id, e)}>RSVP</button>
-  //     </div>
+
   //   </li>
   // })
 
@@ -79,8 +73,18 @@ function ShulDetail() {
               <h5 className="card-title text-center">{shul.name}</h5>
               <p className="text-end">{shul.street_address} {shul.city}, {shul.state} {shul.postal_code}</p>
               <h4>Next Service is:</h4>
-              {/* <p className="card-text">{nextService.name}</p>
-              <p className="card-text">{nextService.date} at </p> */}
+              <p className="card-text mb-n1">{nextService.name}</p>
+              <p className="card-text mb-n1">{nextService.parsed_date} at {nextService.parsed_time}</p>
+              <div className="container pr-1 mr-2 text-end">
+                {nextService.users.length} people have RSVP'd
+                {/* I need to update state when I RSVP ????*/}
+              </div>
+              <div className="container m-1">
+                <button type="button"
+                  className="btn btn-primary btn-sm"
+                  id={`service-${nextService.id}`}
+                  onClick={(e) => handleRSVP(nextService.id, e)}>RSVP</button>
+              </div>
             </div>
             {/*
             <ul className="list-group list-group-flush">
