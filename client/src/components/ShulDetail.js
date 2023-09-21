@@ -1,18 +1,21 @@
 import { useContext, useEffect, useState } from "react"
 import AppContext from "../AppContext"
-import { useNavigate } from "react-router-dom"
-import convertDateStringIntoReadableTime from "../helpers"
+import { useNavigate, useParams } from "react-router-dom"
+// import convertDateStringIntoReadableTime from "../helpers"
 function ShulDetail() {
-  const { shulDetails, setShulDetails, user, setUser } = useContext(AppContext)
+  const { user,
+    setUser,
+    shuls
+  } = useContext(AppContext)
   const [errors, setErrors] = useState([])
   const navigate = useNavigate()
-  useEffect(() => {
-    return () => {
-      // Update state just before the component unmounts
-      setShulDetails({});
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+  // navigate via params
+  const { id } = useParams()
+  // find shul object from state
+  const shul = shuls.find(shul => shul.id === Number(id))
+  console.log('clicked shul is', shul)
+
 
   function addRSVPToState(rsvp) {
     setUser({
@@ -43,7 +46,6 @@ function ShulDetail() {
     }
   }
 
-  // console.log('shulDetails is', shulDetails)
   // const servicesList = shulDetails.next_service.map(service => {
   //   return <li className="list-group-item"
   //     key={service.id} >
@@ -65,25 +67,24 @@ function ShulDetail() {
   //     </div>
   //   </li>
   // })
-  const nextService = shulDetails.next_service
-  const time = convertDateStringIntoReadableTime(nextService.time)
+
   return (
     <>
       <div className="container-md my-3">
         <div className="row">
           <div className="col w-50 mx-auto">
-            <img src={shulDetails.img}
+            <img src={shul.img}
               className="card-img-top img-fluid"
-              alt={shulDetails.name}
+              alt={shul.name}
             ></img>
           </div>
           <div className="col w-50 mx-auto">
             <div className="card-body">
-              <h5 className="card-title text-center">{shulDetails.name}</h5>
-              <p className="text-end">{shulDetails.street_address} {shulDetails.city}, {shulDetails.state} {shulDetails.postal_code}</p>
+              <h5 className="card-title text-center">{shul.name}</h5>
+              <p className="text-end">{shul.street_address} {shul.city}, {shul.state} {shul.postal_code}</p>
               <h4>Next Service is:</h4>
-              <p className="card-text">{nextService.name}</p>
-              <p className="card-text">{nextService.date} at {time}</p>
+              {/* <p className="card-text">{nextService.name}</p>
+              <p className="card-text">{nextService.date} at </p> */}
             </div>
             {/*
             <ul className="list-group list-group-flush">
