@@ -7,7 +7,7 @@ class ShulsController < ApplicationController
   end
 
   def show
-    byebug
+    # byebug
     shul = Shul.find_by(id: params[:id])
     render json: shul, serializer: ShulServiceSerializer
   end

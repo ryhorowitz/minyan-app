@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import AppContext from "../AppContext"
 import { useNavigate } from "react-router-dom"
-
+import convertDateStringIntoReadableTime from "../helpers"
 function ShulDetail() {
   const { shulDetails, setShulDetails, user, setUser } = useContext(AppContext)
   const [errors, setErrors] = useState([])
@@ -42,28 +42,31 @@ function ShulDetail() {
       setErrors(rsvp.errors)
     }
   }
-  const servicesList = shulDetails.services.map(service => {
-    return <li className="list-group-item"
-      key={service.id} >
-      <div className="row">
-        <strong>{service.name}</strong> {service.parsed_time}
-      </div>
-      <div className="row text-end">
-        {service.parsed_date}
-      </div>
-      <div className="row text-end">
-        {service.users.length} people have RSVP'd
-        {/* I need to update state when I RSVP ????*/}
-      </div>
-      <div className="container text-end">
-        <button type="button"
-          className="btn btn-primary btn-sm"
-          id={`service-${service.id}`}
-          onClick={(e) => handleRSVP(service.id, e)}>RSVP</button>
-      </div>
-    </li>
-  })
 
+  // console.log('shulDetails is', shulDetails)
+  // const servicesList = shulDetails.next_service.map(service => {
+  //   return <li className="list-group-item"
+  //     key={service.id} >
+  //     <div className="row">
+  //       <strong>{service.name}</strong> {service.parsed_time}
+  //     </div>
+  //     <div className="row text-end">
+  //       {service.parsed_date}
+  //     </div>
+  //     <div className="row text-end">
+  //       {service.users.length} people have RSVP'd
+  //       {/* I need to update state when I RSVP ????*/}
+  //     </div>
+  //     <div className="container text-end">
+  //       <button type="button"
+  //         className="btn btn-primary btn-sm"
+  //         id={`service-${service.id}`}
+  //         onClick={(e) => handleRSVP(service.id, e)}>RSVP</button>
+  //     </div>
+  //   </li>
+  // })
+  const nextService = shulDetails.next_service
+  const time = convertDateStringIntoReadableTime(nextService.time)
   return (
     <>
       <div className="container-md my-3">
@@ -75,11 +78,14 @@ function ShulDetail() {
             ></img>
           </div>
           <div className="col w-50 mx-auto">
-            <div className={`card-body`}>
+            <div className="card-body">
               <h5 className="card-title text-center">{shulDetails.name}</h5>
               <p className="text-end">{shulDetails.street_address} {shulDetails.city}, {shulDetails.state} {shulDetails.postal_code}</p>
+              <h4>Next Service is:</h4>
+              <p className="card-text">{nextService.name}</p>
+              <p className="card-text">{nextService.date} at {time}</p>
             </div>
-            <h4>Next Service is:</h4>
+            {/*
             <ul className="list-group list-group-flush">
               {servicesList.length > 0 ? servicesList : 'No Services at the moment'}
             </ul>
@@ -92,7 +98,7 @@ function ShulDetail() {
                   <li key={error}> {`RSVP Error: ${error}`} </li>
                 ))}
               </ul>
-            )}
+            )} */}
           </div>
         </div>
 
