@@ -4,12 +4,10 @@ class UsersController < ApplicationController
   after_action :notify_new_user, only: :create
 
   def show
-    puts 'in show method from user_controller'
     render json: current_user
   end
 
   def create
-    # binding.pry
     @user = User.create!(user_params)
 
     session[:user_id] = @user.id

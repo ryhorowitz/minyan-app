@@ -1,18 +1,14 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import AppContext from "../AppContext"
 import { useNavigate, useParams } from "react-router-dom"
 // import convertDateStringIntoReadableTime from "../helpers"
 function ShulDetail() {
-  const { user,
-    setUser,
-    shuls
-  } = useContext(AppContext)
+  const { user, setUser, shuls } = useContext(AppContext)
   const [errors, setErrors] = useState([])
-  const navigate = useNavigate()
 
-  // navigate via params
+  const navigate = useNavigate()
   const { id } = useParams()
-  // find shul object from state
+
   const shul = shuls.find(shul => shul.id === Number(id))
   console.log('clicked shul is', shul)
 

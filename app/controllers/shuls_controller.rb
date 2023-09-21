@@ -5,12 +5,12 @@ class ShulsController < ApplicationController
     shuls = Shul.all
     render json: shuls, status: :ok
   end
-
-  def show
-    # byebug
-    shul = Shul.find_by(id: params[:id])
-    render json: shul, serializer: ShulServiceSerializer
-  end
+  # no longer being used should delete later
+  # def show
+  #   # byebug
+  #   shul = Shul.find_by(id: params[:id])
+  #   render json: shul, serializer: ShulServiceSerializer
+  # end
 
   private
 

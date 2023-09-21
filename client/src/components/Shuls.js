@@ -4,20 +4,10 @@ import styles from "./componentStyles/Shuls.module.css"
 import { useNavigate } from 'react-router-dom'
 
 function Shuls() {
-  const { shuls, setShulDetails } = useContext(AppContext)
+  const { shuls } = useContext(AppContext)
   const navigate = useNavigate()
 
-  function handleShulClick(id) {
-    fetch(`/shuls/${id}`)
-      .then(r => r.json())
-      .then(shul => {
-        console.log('shulDetails are', shul)
-        setShulDetails(shul)
-      })
-      .then(() => {
-        navigate(`/shuls/${id}`)
-      })
-  }
+  function handleNavigateToShul(id) { navigate(`/shuls/${id}`) }
 
   const shulList = shuls.map(shul => {
     return <div className="col" key={shul.id}>
@@ -27,7 +17,7 @@ function Shuls() {
           alt={shul.name}
         ></img>
         <div className={`card-body ${styles.shulCardBody}`}
-          onClick={() => { handleShulClick(shul.id) }}>
+          onClick={() => { handleNavigateToShul(shul.id) }}>
           <h5 className="card-title">{shul.name}</h5>
           <p className="text-end">{shul.street_address} {shul.city}, {shul.state} {shul.postal_code}</p>
         </div>
