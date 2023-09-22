@@ -4,7 +4,6 @@ import AppContext from './AppContext';
 const AppProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [shuls, setShuls] = useState([])
-  const [shulDetails, setShulDetails] = useState({})
 
   useEffect(() => {
     fetch(`/shuls`)
@@ -22,7 +21,6 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider value={{
       user, setUser,
       shuls, setShuls,
-      shulDetails, setShulDetails,
       handleLogout
     }}>
       {children}

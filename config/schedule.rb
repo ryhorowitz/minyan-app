@@ -27,7 +27,7 @@ set :environment, 'development'
 # set :chronic_options, hours24: true
 
 # emails shuls contact_email daily at 6am with number of people who rsvp'd
-every 1.day, at: '6:00 AM' do
+every 1.hour do
   rake 'daily_email:bani_shacharit_rsvps'
 end
 
