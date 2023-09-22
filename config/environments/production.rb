@@ -70,9 +70,9 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: email_address,
+    address: ENV['EMAIL_SMTP_ADDRESS'],
     port: email_port,
-    user_name: email_username,
+    user_name: ENV['EMAIL_USERNAME'],
     password: email_password,
     authentication: email_smtp_auth,
     enable_starttls_auto: email_enable_starttls_auto
