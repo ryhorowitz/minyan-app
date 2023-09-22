@@ -1,5 +1,10 @@
 require 'active_support/core_ext/integer/time'
-
+email_username = Rails.application.credentials.email.email_username
+email_password = Rails.application.credentials.email.email_password
+email_address = Rails.application.credentials.email.email_address
+email_port = Rails.application.credentials.email.email_port
+email_smtp_auth = Rails.application.credentials.email.email_smtp_auth
+email_enable_starttls_auto = Rails.application.credentials.email.email_enable_starttls_auto
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -56,7 +61,18 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "phase_4_project_guidelines_production"
 
   config.action_mailer.perform_caching = false
-
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: email_address,
+    port: email_port,
+    user_name: email_username,
+    password: email_password,
+    authentication: email_smtp_auth,
+    enable_starttls_auto: email_enable_starttls_auto
+  }
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
