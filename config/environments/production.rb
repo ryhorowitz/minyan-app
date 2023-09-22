@@ -5,12 +5,7 @@ require 'active_support/core_ext/integer/time'
 # email_port = Rails.application.credentials.email.email_port
 # email_smtp_auth = Rails.application.credentials.email.email_smtp_auth
 # email_enable_starttls_auto = Rails.application.credentials.email.email_enable_starttls_auto
-# email_enable_starttls_auto = ENV['EMAIL_ENABLE_STARTTLS_AUTO']
-# email_password = ENV['EMAIL_PASSWORD']
-# email_port = ENV['EMAIL_PORT']
-# email_smtp_address = ENV['EMAIL_SMTP_ADDRESS']
-# email_smtp_auth = ENV['EMAIL_SMTP_AUTHENTICATION']
-# email_username = ENV['EMAIL_USERNAME']
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 

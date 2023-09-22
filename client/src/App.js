@@ -52,7 +52,6 @@ function App() {
         <Route path="/shuls/:id" element={<ShulDetail />} />
         <Route path="*" element={<Navigate to={"/users/" + user.id} replace />} />
       </Routes>
-
     </div>
   );
 }

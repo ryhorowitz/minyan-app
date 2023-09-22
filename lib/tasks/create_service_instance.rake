@@ -8,5 +8,6 @@ namespace :create_service_instance do
       date: Date.today + 1.day,
       time: Time.zone.parse('7:15')
     )
+    puts "Created at #{Time.now}"
   end
 end

@@ -11,7 +11,6 @@ function ShulDetail() {
 
   const shul = shuls.find(shul => shul.id === Number(id))
   const nextService = shul.services[shul.services.length - 1]
-  console.log('nextService is', nextService)
 
   function addRSVPToState(rsvp) {
     setUser({

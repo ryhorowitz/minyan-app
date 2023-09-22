@@ -27,7 +27,6 @@ function Shuls() {
   const shulGrid = <div className="row row-cols-1 g-4">{shulList}</div>
   return (
     <>
-      <div>All Shuls</div>
       <ul>{shulGrid}</ul>
     </>
   )
