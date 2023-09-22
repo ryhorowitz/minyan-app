@@ -1,10 +1,10 @@
 require 'active_support/core_ext/integer/time'
-email_username = ENV['EMAIL_USERNAME']
-email_password = ENV['EMAIL_PASSWORD']
-email_address = ENV['EMAIL_SMTP_ADDRESS']
-email_port = ENV['EMAIL_PORT']
-email_smtp_auth = ENV['EMAIL_SMTP_AUTHENTICATION']
-email_enable_starttls_auto = ENV['EMAIL_ENABLE_STARTTLS_AUTO']
+email_username = Rails.application.credentials.email_username
+email_password = Rails.application.credentials.email_password
+email_address = Rails.application.credentials.email_address
+email_port = Rails.application.credentials.email_port
+email_smtp_auth = Rails.application.credentials.email_smtp_auth
+email_enable_starttls_auto = Rails.application.credentials.email_enable_starttls_auto
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -72,8 +72,8 @@ Rails.application.configure do
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
-  # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  config.file_watcher = ActiveSupport::FileUpdateChecker
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  # config.file_watcher = ActiveSupport::FileUpdateChecker
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
