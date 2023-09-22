@@ -71,11 +71,11 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: ENV['EMAIL_SMTP_ADDRESS'],
-    port: email_port,
+    port: ENV['EMAIL_PORT'],
     user_name: ENV['EMAIL_USERNAME'],
-    password: email_password,
-    authentication: email_smtp_auth,
-    enable_starttls_auto: email_enable_starttls_auto
+    password: ENV['EMAIL_PASSWORD'],
+    authentication: ENV['EMAIL_SMTP_AUTHENTICATION'],
+    enable_starttls_auto: ENV['EMAIL_ENABLE_STARTTLS_AUTO']
   }
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
