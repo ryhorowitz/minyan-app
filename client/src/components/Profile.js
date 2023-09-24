@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import AppContext from "../AppContext"
-
+import convertDateStringIntoReadableTime from "../helpers"
 function Profile() {
   const { user, setUser, handleLogout } = useContext(AppContext)
   const [showModal, setShowModal] = useState(false)
@@ -60,11 +60,16 @@ function Profile() {
       user_services: filteredUserServices
     })
   }
+
+
   const nextMinyanUserAttending = user.user_services.map(s => {
     // console.log('s is ', s)
+    const date = convertDateStringIntoReadableTime(s.date)
+    console.log('date is', date)
+
     return <li className="list-group-item" key={s.id}>
       <div className="text-end">{s.service_name} </div>
-      <div className="text-end">{s.parsed_date}</div>
+      <div className="text-end">{date}</div>
       <div className="text-end">{s.parsed_time} at {s.service_shul_name}</div>
 
       <button className="btn btn-primary btn-sm"

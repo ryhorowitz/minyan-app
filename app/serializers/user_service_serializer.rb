@@ -1,6 +1,7 @@
 class UserServiceSerializer < ActiveModel::Serializer
-  attributes :id, :service_name, :parsed_date, :parsed_time,
-             :service_shul_name, :upcoming_services
+  attributes :id, :service_name, :date, :time,
+             :parsed_date, :parsed_time, :service_shul_name
+  # :upcoming_services
 
   def service_name
     object.service.name
@@ -22,9 +23,17 @@ class UserServiceSerializer < ActiveModel::Serializer
         .strftime('%a %B %e, %Y')
   end
 
-  def upcoming_services
-    return object.service.date if object.service.date > Date.today
-
-    nil
+  def date
+    object.service.date
   end
+
+  def time
+    object.service.time
+  end
+
+  # def upcoming_services
+  #   return object.service.date if object.service.date > Date.today
+
+  #   nil
+  # end
 end

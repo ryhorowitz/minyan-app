@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import AppContext from "../AppContext"
 import { useNavigate, useParams } from "react-router-dom"
-// import convertDateStringIntoReadableTime from "../helpers"
+
 function ShulDetail() {
   const { user, setUser, shuls } = useContext(AppContext)
   const [errors, setErrors] = useState([])
