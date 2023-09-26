@@ -63,14 +63,21 @@ function Profile() {
       user_services: filteredUserServices
     })
   }
-
+  // filter out already attended services
+  const upcomingServices = user.user_services.filter(s => {
+    // if date is in the past
+    if (s.date) { }
+    // skip
+    // if date is today and its already past
+    // skip
+    // else return service
+  })
 
   const nextMinyanUserAttending = user.user_services.map(s => {
     // console.log('s is ', s)
     const date = convertDateStringIntoReadableDate(s.date)
-
     const time = convertTimeStringIntoReadableTime(s.time);
-    console.log('time is', time)
+
     return <li className="list-group-item" key={s.id}>
       <div className="text-end">{s.service_name} </div>
       <div className="text-end">{date}</div>

@@ -39,28 +39,33 @@ Shul.create!(name: 'Shtiebl',
              img: 'https://www.jewishexponent.com/wp-content/uploads/2019/07/65640757_624638288035072_182707891591970816_n.jpg',
              contact_email: 'ryanhorowitz@yahoo.com')
 
-tomorrow = Time.now + 1.day
-tomorrow_at_715 = tomorrow.change(hour: 7, min: 15)
-tomorrow_at_1530 = tomorrow.change(hour: 15, min: 30)
-tomorrow_at_1930 = tomorrow.change(hour: 19, min: 30)
-# only shacharit for initial dev
+today = Date.today
+shacharit_time = Time.zone.parse('07:15 AM') # Use your application's timezone
+tomorrow = today + 1
+minchah_time = Time.zone.parse('03:30 PM')
 Service.create!(
   name: 'Shacharit',
   shul_id: 1,
   date: Date.today,
-  time: Time.zone.parse('7:15')
+  time: Time.zone.parse('7:15'),
+  datetime: DateTime.new(today.year, today.month, today.day,
+                         shacharit_time.hour, shacharit_time.min, shacharit_time.sec, shacharit_time.zone)
 )
 Service.create!(
   name: 'Shacharit',
   shul_id: 1,
   date: Date.today + 1.day,
-  time: Time.zone.parse('7:15')
+  time: Time.zone.parse('7:15'),
+  datetime: DateTime.new(tomorrow.year, tomorrow.month, tomorrow.day,
+                         shacharit_time.hour, shacharit_time.min, shacharit_time.sec, shacharit_time.zone)
 )
 Service.create!(
   name: 'Mincha',
   shul_id: 2,
   date: Time.now + 1.day,
-  time: Time.zone.parse('13:30')
+  time: Time.zone.parse('13:30'),
+  datetime: DateTime.new(tomorrow.year, tomorrow.month, tomorrow.day,
+                         minchah_time.hour, minchah_time.min, minchah_time.sec, minchah_time.zone)
 )
 # Service.create!(
 #   name: 'Maariv',
