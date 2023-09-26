@@ -6,6 +6,11 @@ export default function LoginSignupButtonsContainer() {
         <div className="row">
           <div className="col">
             <li className="nav-item"  >
+              <Link className="nav-link" to={"/about"}>About</Link>
+            </li>
+          </div>
+          <div className="col">
+            <li className="nav-item"  >
               <Link className="nav-link" to="/login">Login</Link>
             </li>
           </div>

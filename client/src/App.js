@@ -8,6 +8,7 @@ import NavBar from './components/NavBar'
 import Shuls from './components/Shuls'
 import Profile from './components/Profile'
 import ShulDetail from './components/ShulDetail'
+import About from './components/About'
 
 function App() {
   const { user, setUser, handleLogout } = useContext(AppContext)
@@ -36,6 +37,7 @@ function App() {
         </div>
 
         <Routes>
+          <Route path='/about' element={<About />} />
           <Route path='/login' element={<Login setUser={setUser} />} />
           <Route path='/signup' element={<Signup setUser={setUser} />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
@@ -47,6 +49,7 @@ function App() {
     <div className="App">
       <NavBar logout={handleLogout} />
       <Routes>
+        <Route path='/about' element={<About />} />
         <Route path="/users/:id" element={<Profile />} />
         <Route path="/shuls" element={<Shuls />} />
         <Route path="/shuls/:id" element={<ShulDetail />} />

@@ -14,6 +14,11 @@ export default function NavBar({ logout }) {
             <div className="row">
               <div className="col">
                 <li className="nav-item"  >
+                  <Link className="nav-link" to={"/about"}>About</Link>
+                </li>
+              </div>
+              <div className="col">
+                <li className="nav-item"  >
                   <Link className="nav-link" to={"/users/" + user.username}>Profile</Link>
                 </li>
               </div>
