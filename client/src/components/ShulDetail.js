@@ -13,10 +13,9 @@ function ShulDetail() {
 
   const shul = shuls.find(shul => shul.id === Number(id))
   const nextService = shul.services[shul.services.length - 1]
-  console.log('nextService:', nextService)
+  // console.log('nextService:', nextService)
   const datetime = convertDateTimeStringIntoReadableTime(nextService.datetime)
-  // seems to be listing the wrong time zone
-  console.log('next service datetime', datetime)
+  // console.log('next service datetime', datetime)
   function addRSVPToState(rsvp) {
     setUser({
       ...user,

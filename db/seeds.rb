@@ -47,24 +47,18 @@ minchah_time = Time.zone.parse('03:30 PM')
 Service.create!(
   name: 'Shacharit',
   shul_id: 1,
-  date: Date.today,
-  time: Time.zone.parse('7:15'),
   datetime: DateTime.new(today.year, today.month, today.day,
                          shacharit_time.hour, shacharit_time.min, shacharit_time.sec, shacharit_time.zone)
 )
 Service.create!(
   name: 'Shacharit',
   shul_id: 1,
-  date: Date.today + 1.day,
-  time: Time.zone.parse('7:15'),
   datetime: DateTime.new(tomorrow.year, tomorrow.month, tomorrow.day,
                          shacharit_time.hour, shacharit_time.min, shacharit_time.sec, shacharit_time.zone)
 )
 Service.create!(
   name: 'Mincha',
   shul_id: 2,
-  date: Time.now + 1.day,
-  time: Time.zone.parse('13:30'),
   datetime: DateTime.new(tomorrow.year, tomorrow.month, tomorrow.day,
                          minchah_time.hour, minchah_time.min, minchah_time.sec, minchah_time.zone)
 )
