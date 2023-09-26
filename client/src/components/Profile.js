@@ -1,9 +1,6 @@
 import { useContext, useState } from "react"
 import AppContext from "../AppContext"
-import {
-  convertDateStringIntoReadableDate,
-  convertTimeStringIntoReadableTime
-} from "../helpers"
+import { convertDateTimeStringIntoReadableTime } from "../helpers"
 function Profile() {
   const { user, setUser, handleLogout } = useContext(AppContext)
   const [showModal, setShowModal] = useState(false)
@@ -74,14 +71,13 @@ function Profile() {
   })
 
   const nextMinyanUserAttending = user.user_services.map(s => {
-    // console.log('s is ', s)
-    const date = convertDateStringIntoReadableDate(s.date)
-    const time = convertTimeStringIntoReadableTime(s.time);
 
+    const datetime = convertDateTimeStringIntoReadableTime(s.datetime)
+    // console.log('datetime is', datetime)
     return <li className="list-group-item" key={s.id}>
       <div className="text-end">{s.service_name} </div>
-      <div className="text-end">{date}</div>
-      <div className="text-end">{time} at {s.service_shul_name}</div>
+      <div className="text-end">{datetime}</div>
+      <div className="text-end">at {s.service_shul_name}</div>
 
       <button className="btn btn-primary btn-sm"
         type="button"

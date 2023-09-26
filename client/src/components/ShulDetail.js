@@ -1,6 +1,8 @@
 import { useContext, useState } from "react"
 import AppContext from "../AppContext"
 import { useNavigate, useParams } from "react-router-dom"
+import { convertDateTimeStringIntoReadableTime } from "../helpers"
+
 
 function ShulDetail() {
   const { user, setUser, shuls } = useContext(AppContext)
@@ -11,7 +13,10 @@ function ShulDetail() {
 
   const shul = shuls.find(shul => shul.id === Number(id))
   const nextService = shul.services[shul.services.length - 1]
-
+  console.log('nextService:', nextService)
+  const datetime = convertDateTimeStringIntoReadableTime(nextService.datetime)
+  // seems to be listing the wrong time zone
+  console.log('next service datetime', datetime)
   function addRSVPToState(rsvp) {
     setUser({
       ...user,
@@ -40,7 +45,6 @@ function ShulDetail() {
       setErrors(rsvp.errors)
     }
   }
-
   return (
     <>
       <div className="container-md my-3">
@@ -60,7 +64,7 @@ function ShulDetail() {
                 <>
                   <h4>Next Service is:</h4>
                   <p className="card-text mb-n1">{nextService.name}</p>
-                  <p className="card-text mb-n1">{nextService.parsed_date} at {nextService.parsed_time}</p>
+                  <p className="card-text mb-n1">{datetime}</p>
                   <div className="container pr-1 mr-2 text-end">
                     {nextService.users.length} people have RSVP'd
                   </div>

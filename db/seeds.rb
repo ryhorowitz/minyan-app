@@ -43,6 +43,7 @@ today = Date.today
 shacharit_time = Time.zone.parse('07:15 AM') # Use your application's timezone
 tomorrow = today + 1
 minchah_time = Time.zone.parse('03:30 PM')
+
 Service.create!(
   name: 'Shacharit',
   shul_id: 1,
