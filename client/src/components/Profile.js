@@ -60,16 +60,16 @@ function Profile() {
       user_services: filteredUserServices
     })
   }
-  // filter out already attended services
+  // filter out already previous services
   const upcomingServices = user.user_services.filter(s => {
-    // if date is in the past
-    if (s.date) { }
-    // skip
-    // if date is today and its already past
-    // skip
+    if (Date.parse(s.datetime) < Date.now()) {
+      console.log('This service is in the past', s.datetime)
+      return false
+    }
     // else return service
+    return s
   })
-
+  console.log(upcomingServices)
   const nextMinyanUserAttending = user.user_services.map(s => {
 
     const datetime = convertDateTimeStringIntoReadableTime(s.datetime)
