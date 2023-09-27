@@ -3,6 +3,7 @@ import AppContext from "../AppContext"
 function ContactShul() {
   const { user, shuls } = useContext(AppContext)
   const [message, setMessage] = useState('')
+  const [recipient, setRecipient] = useState(shuls[0].name)
   const [errors, setErrors] = useState([])
   // {/* select option listing all shuls */}
 
@@ -10,6 +11,9 @@ function ContactShul() {
     return <option value={shul.name} key={shul.id}>{shul.name}</option>
   })
 
+  function handleSelectShul(e) {
+    setRecipient(e.target.value)
+  }
   function handleMessageChange(e) {
     setMessage(e.target.value)
   }
@@ -30,16 +34,21 @@ function ContactShul() {
           <div className="col-md-6 offset-md-3">
             <form onSubmit={submitMessage}>
               <div className="mb-3">
-                <label for="selectOption" className="form-label">Contact:</label>
-                <select className="form-select" id="selectOption">
+                <label htmlFor="selectOption" className="form-label">Contact:</label>
+                <select className="form-select"
+                  id="selectOption"
+                  name="shul-option"
+                  onChange={handleSelectShul}
+                >
                   {shulSelectOptions}
                 </select>
               </div>
               <div className="mb-3">
-                <label for="textarea" className="form-label">Message:</label>
+                <label for="textarea" className="form-label" >Message:</label>
                 <textarea className="form-control"
                   id="textarea"
                   rows="4"
+                  name="message"
                   onChange={handleMessageChange}
                 ></textarea>
               </div>
