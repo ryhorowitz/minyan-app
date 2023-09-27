@@ -4,9 +4,10 @@ import { convertDateTimeStringIntoReadableTime } from "../helpers"
 function Profile() {
   const { user, setUser, handleLogout } = useContext(AppContext)
   const [showModal, setShowModal] = useState(false)
+  const [profileUpdateErrors, setProfileUpdateErrors] = useState([])
   const [editForm, setEditForm] = useState({
-    email: user.email,
-    username: user.username
+    username: user.username,
+    email: user.email
   })
 
   function toggleModal() {
@@ -29,15 +30,32 @@ function Profile() {
       body: JSON.stringify(editForm)
     }
     fetch(`/users/${user.id}`, updateOptions)
-      .then(r => r.json())
-      .then(updatedProfile => {
-        const { email, username } = updatedProfile
-        setUser({
-          ...user,
-          username,
-          email
-        })
-        toggleModal()
+      .then(r => {
+        if (r.ok) {
+          r.json()
+            .then(updatedProfile => {
+              console.log('updated profile', updatedProfile)
+              const { email, username } = updatedProfile
+              setUser({
+                ...user,
+                username,
+                email
+              })
+              toggleModal()
+            })
+        } else {
+          r.json()
+            .then(e => {
+              setProfileUpdateErrors(Object.values(e).flat())
+            })
+            .then(() => {
+              // reset inputs to 
+              setEditForm({
+                username: user.username,
+                email: user.email
+              })
+            })
+        }
       })
   }
 
@@ -60,7 +78,7 @@ function Profile() {
       user_services: filteredUserServices
     })
   }
-  // filter out already previous services
+
   const upcomingServices = user.user_services.filter(s => {
     if (Date.parse(s.datetime) < Date.now()) {
       console.log('This service is in the past', s.datetime)
@@ -69,11 +87,9 @@ function Profile() {
     // else return service
     return s
   })
-  console.log(upcomingServices)
-  const nextMinyanUserAttending = user.user_services.map(s => {
 
+  const nextMinyanUserAttending = upcomingServices.map(s => {
     const datetime = convertDateTimeStringIntoReadableTime(s.datetime)
-    // console.log('datetime is', datetime)
     return <li className="list-group-item" key={s.id}>
       <div className="text-end">{s.service_name} </div>
       <div className="text-end">{datetime}</div>
@@ -85,7 +101,7 @@ function Profile() {
         onClick={() => { handleDeleteRSVP(s.id) }} >Cancel</button>
     </li>
   })
-  // I want to display all the users rsvps during the next 24hrs
+
   return (
     <>
       <div className="container my-5">
@@ -135,7 +151,8 @@ function Profile() {
                     id="usernameUpdate"
                     aria-describedby="usernameUpdate"
                     onChange={handleFormChange}
-                    autoComplete="false" />
+                    autoComplete="false"
+                    required />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="emailUpdate" className="form-label">Email address</label>
@@ -146,10 +163,18 @@ function Profile() {
                     id="emailUpdate"
                     aria-describedby="emailUpdate"
                     onChange={handleFormChange}
-                    autoComplete="false" />
+                    autoComplete="false"
+                    required />
                 </div>
               </form>
             </div>
+            <>{profileUpdateErrors.length > 0 && (
+              <ul style={{ color: "red" }}>
+                {profileUpdateErrors.map((error) => (
+                  <li key={error}> {`Error: ${error}`} </li>
+                ))}
+              </ul>
+            )}</>
             <div className="container mx-2">
               <div className="row">
                 <div className="col-md-auto">

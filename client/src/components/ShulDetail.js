@@ -86,7 +86,10 @@ function ShulDetail() {
                 :
                 <h5>No Services at the moment</h5>
               }
-
+              <div className="container">
+                <h5>Message Shul a question</h5>
+                <button>Message Shul a question</button>
+              </div>
             </div>
           </div>
 
@@ -94,7 +97,6 @@ function ShulDetail() {
       </div>
     </>
   )
-
 }
 
 export default ShulDetail
