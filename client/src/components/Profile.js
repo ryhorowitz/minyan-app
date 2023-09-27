@@ -79,14 +79,7 @@ function Profile() {
     })
   }
 
-  const upcomingServices = user.user_services.filter(s => {
-    if (Date.parse(s.datetime) < Date.now()) {
-      console.log('This service is in the past', s.datetime)
-      return false
-    }
-    // else return service
-    return s
-  })
+  const upcomingServices = user.user_services.filter(s => Date.parse(s.datetime) < Date.now() ? false : s)
 
   const nextMinyanUserAttending = upcomingServices.map(s => {
     const datetime = convertDateTimeStringIntoReadableTime(s.datetime)
