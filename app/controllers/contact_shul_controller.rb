@@ -5,5 +5,7 @@ class ContactShulController < ApplicationController
     sender = current_user
     # byebug
     ContactShulMailer.send_email(recipient, message, sender).deliver_now
+
+    render json: { 'message': 'message sent' }, status: :ok
   end
 end

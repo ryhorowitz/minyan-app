@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import AppContext from "../AppContext"
 function ContactShul() {
-  const { user, shuls } = useContext(AppContext)
+  const { shuls } = useContext(AppContext)
   const [recipient, setRecipient] = useState(shuls[0].name)
   const [message, setMessage] = useState('')
   const [errors, setErrors] = useState([])
@@ -31,7 +31,10 @@ function ContactShul() {
     })
       .then(r => r.json())
       .then(r => console.log(r))
-      .catch(e => console.error('err is', e))
+      .catch(e => {
+        console.error('err is', e)
+        setErrors(e)
+      })
   }
 
   return (
@@ -60,6 +63,7 @@ function ContactShul() {
                   rows="4"
                   name="message"
                   onChange={handleMessageChange}
+                  required
                 ></textarea>
               </div>
               <button type="submit" className="btn btn-primary">Submit</button>
