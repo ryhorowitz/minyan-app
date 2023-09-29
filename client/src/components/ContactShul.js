@@ -2,8 +2,8 @@ import { useContext, useState } from "react"
 import AppContext from "../AppContext"
 function ContactShul() {
   const { user, shuls } = useContext(AppContext)
-  const [message, setMessage] = useState('')
   const [recipient, setRecipient] = useState(shuls[0].name)
+  const [message, setMessage] = useState('')
   const [errors, setErrors] = useState([])
   // {/* select option listing all shuls */}
 
@@ -22,6 +22,16 @@ function ContactShul() {
     // trigger action mailer
     e.preventDefault()
     console.log('submitMessage clicked')
+    fetch("/contact-shul", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ recipient, message })
+    })
+      .then(r => r.json())
+      .then(r => console.log(r))
+      .catch(e => console.error('err is', e))
   }
 
   return (
@@ -44,7 +54,7 @@ function ContactShul() {
                 </select>
               </div>
               <div className="mb-3">
-                <label for="textarea" className="form-label" >Message:</label>
+                <label htmlFor="textarea" className="form-label" >Message:</label>
                 <textarea className="form-control"
                   id="textarea"
                   rows="4"
