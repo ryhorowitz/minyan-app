@@ -36,7 +36,7 @@ From the root directory create a `.env` file.
 ```sh
 touch .env
 ```
-Add these variables. 
+Add the below code and replace the starred out fields with your Gmail credentials. 
 ```
     EMAIL_ENABLE_STARTTLS_AUTO=true
     EMAIL_PASSWORD=********** #use your own google app password
@@ -45,6 +45,7 @@ Add these variables.
     EMAIL_SMTP_AUTHENTICATION=plain
     EMAIL_USERNAME=**********@gmail.com #google email you will be sending from.
 ```
+If you need help getting a Google App password see this link (https://support.google.com/accounts/answer/185833?hl=en)
 
 ## Run it!
 
