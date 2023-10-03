@@ -36,7 +36,8 @@ From the root directory create a `.env` file.
 ```sh
 touch .env
 ```
-Add the below code and replace the starred out fields with your Gmail credentials. 
+
+In the .env file, add the below code and replace the starred out fields with your Gmail credentials. 
 ```
     EMAIL_ENABLE_STARTTLS_AUTO=true
     EMAIL_PASSWORD=********** #use your own google app password
@@ -45,8 +46,9 @@ Add the below code and replace the starred out fields with your Gmail credential
     EMAIL_SMTP_AUTHENTICATION=plain
     EMAIL_USERNAME=**********@gmail.com #google email you will be sending from.
 ```
-If you need help getting a Google App password see this link (https://support.google.com/accounts/answer/185833?hl=en)
+If you need help getting a Google App password see this [link](https://support.google.com/accounts/answer/185833?hl=en).
 
+In the dev/congif/development.rb
 ## Run it!
 
 You can use the following commands to run the application:
@@ -54,5 +56,4 @@ You can use the following commands to run the application:
 - `rails s`: run the backend on [http://localhost:3000](http://localhost:3000)
 - `npm start --prefix client`: run the frontend on
   [http://localhost:4000](http://localhost:4000)
-
 

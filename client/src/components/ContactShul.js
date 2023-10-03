@@ -1,16 +1,30 @@
 import { useContext, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import AppContext from "../AppContext"
+import ContactSuccessModal from "./ContactSuccessModal"
 function ContactShul() {
   const { shuls } = useContext(AppContext)
   const [recipient, setRecipient] = useState(shuls[0].name)
   const [message, setMessage] = useState('')
   const [errors, setErrors] = useState([])
-  // {/* select option listing all shuls */}
-
+  const [showModal, setShowModal] = useState(false)
+  const navigate = useNavigate()
   const shulSelectOptions = shuls.map(shul => {
     return <option value={shul.name} key={shul.id}>{shul.name}</option>
   })
 
+  function toggleModal() {
+    setShowModal(!showModal)
+    console.log('toggleModal')
+    modalTimer()
+  }
+
+  function modalTimer() {
+    setTimeout(() => {
+      setShowModal(!showModal)
+      navigate('/profile')
+    }, 3000)
+  }
   function handleSelectShul(e) {
     setRecipient(e.target.value)
   }
@@ -30,7 +44,11 @@ function ContactShul() {
       body: JSON.stringify({ recipient, message })
     })
       .then(r => r.json())
-      .then(r => console.log(r))
+      .then((r) => {
+        console.log('r', r)
+        toggleModal()
+
+      })
       .catch(e => {
         console.error('err is', e)
         setErrors(e)
@@ -45,6 +63,13 @@ function ContactShul() {
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6 offset-md-3">
+            {errors.length > 0 && (
+              <ul style={{ color: "red" }}>
+                {errors.map((error) => (
+                  <li key={error}>{error}</li>
+                ))}
+              </ul>
+            )}
             <form onSubmit={submitMessage}>
               <div className="mb-3">
                 <label htmlFor="selectOption" className="form-label">Contact:</label>
@@ -70,6 +95,10 @@ function ContactShul() {
             </form>
           </div>
         </div>
+        <div className={`modal ${showModal ? 'show' : ''}`} tabIndex="-1" style={{ display: showModal ? 'block' : 'none' }}>
+          <ContactSuccessModal toggleModal={toggleModal} />
+        </div>
+
       </div >
     </div >
   )
