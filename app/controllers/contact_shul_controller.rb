@@ -4,8 +4,11 @@ class ContactShulController < ApplicationController
     message = params[:message]
     sender = current_user
     # byebug
-    ContactShulMailer.send_email(recipient, message, sender).deliver_now
-
-    render json: { 'message': 'message sent' }, status: :ok
+    begin
+      ContactShulMailer.send_email(recipient, message, sender).deliver_now
+      render json: { 'message': 'message sent' }, status: :ok
+    rescue StandardError
+      flash[:error] = 'There was an error sending the email. Please try again later.'
+    end
   end
 end
