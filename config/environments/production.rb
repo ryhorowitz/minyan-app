@@ -1,4 +1,10 @@
 require 'active_support/core_ext/integer/time'
+email_username = ENV['EMAIL_USERNAME']
+email_password = ENV['EMAIL_PASSWORD']
+email_address = ENV['EMAIL_SMTP_ADDRESS']
+email_port = ENV['EMAIL_PORT']
+email_smtp_auth = ENV['EMAIL_SMTP_AUTHENTICATION']
+email_enable_starttls_auto = ENV['EMAIL_ENABLE_STARTTLS_AUTO']
 # email_username = Rails.application.credentials.email.email_username
 # email_password = Rails.application.credentials.email.email_password
 # email_smtp_address = Rails.application.credentials.email.email_address
@@ -73,7 +79,7 @@ Rails.application.configure do
     enable_starttls_auto: ENV['EMAIL_ENABLE_STARTTLS_AUTO']
   }
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
