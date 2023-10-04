@@ -1,10 +1,10 @@
 require 'active_support/core_ext/integer/time'
-email_username = ENV['EMAIL_USERNAME']
-email_password = ENV['EMAIL_PASSWORD']
-email_address = ENV['EMAIL_SMTP_ADDRESS']
-email_port = ENV['EMAIL_PORT']
-email_smtp_auth = ENV['EMAIL_SMTP_AUTHENTICATION']
-email_enable_starttls_auto = ENV['EMAIL_ENABLE_STARTTLS_AUTO']
+# email_username = ENV['EMAIL_USERNAME']
+# email_password = ENV['EMAIL_PASSWORD']
+# email_address = ENV['EMAIL_SMTP_ADDRESS']
+# email_port = ENV['EMAIL_PORT']
+# email_smtp_auth = ENV['EMAIL_SMTP_AUTHENTICATION']
+# email_enable_starttls_auto = ENV['EMAIL_ENABLE_STARTTLS_AUTO']
 # email_username = Rails.application.credentials.email.email_username
 # email_password = Rails.application.credentials.email.email_password
 # email_smtp_address = Rails.application.credentials.email.email_address
