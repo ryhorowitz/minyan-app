@@ -43,15 +43,19 @@ function ContactShul() {
       },
       body: JSON.stringify({ recipient, message })
     })
-      .then(r => r.json())
-      .then((r) => {
-        console.log('r', r)
-        toggleModal()
+      .then(r => {
 
-      })
-      .catch(e => {
-        console.error('err is', e)
-        setErrors(e)
+        if (r.ok) {
+          r.json().then(user => {
+            console.log('r', r)
+            toggleModal()
+          })
+        } else {
+          r.json().then(e => {
+            console.error('err res', e.error)
+            setErrors(Object.values(e).flat())
+          })
+        }
       })
   }
 
