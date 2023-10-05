@@ -30,7 +30,7 @@ Shul.create!(name: 'Mamash',
              state: 'PA',
              postal_code: '19146',
              img: 'https://images.givelively.org/nonprofits/02c27ab6-551c-45c5-b0e7-1e3a84fe7b5f/social_images/chabad-young-philly_original_27a2bff528563d6312491bcae8195ffdc7d86ac0d5b4b075f9ca5859dec7c70d_social.jpg',
-             contact_email: 'ryanhorowitz@yahoo.com')
+             contact_email: 'benjamin.aschenbrenner@flatironschool.com')
 Shul.create!(name: 'Shtiebl',
              street_address: '1321 South Juniper Street',
              city: 'Philadelphia',
