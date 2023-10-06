@@ -31,7 +31,7 @@ every 1.day, at: '6:15 AM' do
   rake 'daily_email:bani_shacharit_rsvps'
 end
 
-# at the time of the scheduled appointment create new appointment
+# at the time of the scheduled appointment create new appointment for the next day
 every 1.day, at: '7:15 AM' do
   rake 'create_service_instance:create_bnai_shacharit_service'
 end

@@ -13,8 +13,30 @@ function ShulDetail() {
 
   const shul = shuls.find(shul => shul.id === Number(id))
   const nextService = shul.services[shul.services.length - 1]
-  // console.log('nextService:', nextService)
+
+  if (!nextService) {
+    return (
+      <div className="container-md my-3">
+        <div className="row">
+          <div className="col w-50 mx-auto">
+            <img src={shul.img}
+              className="card-img-top img-fluid"
+              alt={shul.name}
+            ></img>
+          </div>
+          <div className="col w-50 mx-auto">
+            <div className="card-body">
+              <h5 className="card-title text-center">{shul.name}</h5>
+              <p className="text-center">{shul.street_address} {shul.city}, {shul.state} {shul.postal_code}</p>
+              <h5>No Services at the moment</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
   const datetime = convertDateTimeStringIntoReadableTime(nextService.datetime)
+
   // console.log('next service datetime', datetime)
   function addRSVPToState(rsvp) {
     setUser({
@@ -58,37 +80,31 @@ function ShulDetail() {
             <div className="card-body">
               <h5 className="card-title text-center">{shul.name}</h5>
               <p className="text-center">{shul.street_address} {shul.city}, {shul.state} {shul.postal_code}</p>
-
-              {nextService ?
+              <>
+                <h4>Next Service is:</h4>
+                <p className="card-text mb-n1">{nextService.name}</p>
+                <p className="card-text mb-n1">{datetime}</p>
+                <div className="container pr-1 mr-2 text-end">
+                  {nextService.users.length} people have RSVP'd
+                </div>
+                <div className="container m-1">
+                  <button type="button"
+                    className="btn btn-primary btn-sm"
+                    id={`service-${nextService.id}`}
+                    onClick={(e) => handleRSVP(nextService.id, e)}>RSVP</button>
+                </div>
                 <>
-                  <h4>Next Service is:</h4>
-                  <p className="card-text mb-n1">{nextService.name}</p>
-                  <p className="card-text mb-n1">{datetime}</p>
-                  <div className="container pr-1 mr-2 text-end">
-                    {nextService.users.length} people have RSVP'd
-                  </div>
-                  <div className="container m-1">
-                    <button type="button"
-                      className="btn btn-primary btn-sm"
-                      id={`service-${nextService.id}`}
-                      onClick={(e) => handleRSVP(nextService.id, e)}>RSVP</button>
-                  </div>
-                  <>
-                    {errors.length > 0 && (
-                      <ul style={{ color: "red" }}>
-                        {errors.map((error) => (
-                          <li key={error}> {`RSVP Error: ${error}`} </li>
-                        ))}
-                      </ul>
-                    )}
-                  </>
+                  {errors.length > 0 && (
+                    <ul style={{ color: "red" }}>
+                      {errors.map((error) => (
+                        <li key={error}> {`RSVP Error: ${error}`} </li>
+                      ))}
+                    </ul>
+                  )}
                 </>
-                :
-                <h5>No Services at the moment</h5>
-              }
+              </>
             </div>
           </div>
-
         </div>
       </div>
     </>
