@@ -7,7 +7,7 @@ function ContactSuccessModal(toggleModal) {
     <div className="modal-dialog">
       <div class="alert alert-success mt-4" role="alert">
         <h4 class="alert-heading">Message Sent!</h4>
-        <p>You will be redirectly back to you profile page shortly</p>
+        <p>You will be redirected back to you profile page shortly</p>
       </div>
     </div>
 
