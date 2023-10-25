@@ -13,7 +13,7 @@ function ShulDetail() {
 
   const shul = shuls.find(shul => shul.id === Number(id))
   const nextService = shul.services[shul.services.length - 1]
-
+  console.log('nextServive is ', nextService)
   if (!nextService) {
     return (
       <div className="container-md my-3">
@@ -35,6 +35,7 @@ function ShulDetail() {
       </div>
     )
   }
+
   const datetime = convertDateTimeStringIntoReadableTime(nextService.datetime)
 
   // console.log('next service datetime', datetime)

@@ -2,7 +2,7 @@
 
 ## Description
 
-This full stack app allows the user to RSVP for the upcoming minyans (synagouge services) in Center City Philadelphia. 
+This full stack app allows the user to RSVP for the upcoming minyans (synagogue services) in Center City Philadelphia. 
 
 ## Requirements
 
